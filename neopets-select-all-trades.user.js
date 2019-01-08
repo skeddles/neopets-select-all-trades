@@ -13,7 +13,7 @@
     var table = document.querySelector('form[action="/island/process_tradingpost.phtml"] table tbody');
 
     var newRow = document.createElement('tr');
-    newRow.innerHTML = '<td style="text-align: center"><input type="checkbox" id="check-all-trades"/><label for="check-all-trades">ALL</label></td><td></td>'
+    newRow.innerHTML = '<td style="text-align: center"><input type="checkbox" id="check-all-trades"/><label for="check-all-trades">first 10</label></td><td></td>'
     table.appendChild(newRow);
 
     var checkbox = document.getElementById('check-all-trades');
@@ -23,12 +23,13 @@
     checkbox.addEventListener('change',e => {
 
         if (e.target.checked) {
-            itemBoxes.forEach(i => {
-                i.checked = true;
+            itemBoxes.forEach((item, i) => {
+				if (i<10)
+                item.checked = true;
             });
         } else {
-            itemBoxes.forEach(i => {
-                i.checked = false;
+            itemBoxes.forEach((item, i) => {
+                item.checked = false;
             });
 
         }
